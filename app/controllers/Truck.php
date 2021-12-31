@@ -4,26 +4,48 @@ require_once '../app/domain/Truck.php';
 
 use app\domain\Truck\Truck as TruckClass;
 
+use app\domain\Kendaraan\Kendaraan as KendaraanClass;
+
 class Truck extends Controller{
+    private KendaraanClass $kendaraan;
     public function index(){
         $data['truck'] = $this->model('Truck_model')->getAllTruck();
-        echo json_encode($data);
+        $this->view('truck/index', $data);
     }
 
     public function tambah(){
         $data = $_POST;
-        $truck = new TruckClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["beban_maksimal"], $data["beban_maksimal"], $data["jenis_truck"]);
+        $data["harga_sewa"] = str_replace(".","",$data["harga_sewa"]);
+        $data["harga_sewa"] = str_replace("Rp","",$data["harga_sewa"]);
+        $this->kendaraan = new TruckClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["volume_muatan"], $data["beban_maksimal"], $data["jenis_truck"]);
 
-        $this->model('Truck_model')->tambahDataTruck($truck);
+        $this->model('Truck_model')->tambahDataTruck($this->kendaraan);
 
         // INGAT KASI HEADER UNTUK REDIRECT -> AGAR TIDAK KELUAR WARNING
-        echo "Berhasil Menambahkan Data";
+        header('Location: ' . BASEURL . '/truck');
+        exit;
     }
 
     public function hapus($id_truck) {
         $this->model("Truck_model")->hapusDataTruck($id_truck);
         
         // INGAT KASI HEADER UNTUK REDIRECT -> AGAR TIDAK KELUAR WARNING
-        echo "Berhasil Menghapus Data";
+        header('Location: ' . BASEURL . '/truck');
+        exit;
+    }
+
+    public function ubah(){
+        $data = $_POST;
+        // untuk unformat rupiah
+        $data["harga_sewa"] = str_replace(".","",$data["harga_sewa"]);
+        $data["harga_sewa"] = str_replace("Rp","",$data["harga_sewa"]);
+        $this->kendaraan = new TruckClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["volume_muatan"], $data["beban_maksimal"], $data["jenis_truck"]);
+        $this->model('Truck_model')->ubahDataTruck($this->kendaraan, $_POST["id_truck"]);
+        header('Location: ' . BASEURL . '/truck');
+        exit;
+    }
+
+    public function getTruckById(){
+        echo json_encode($this->model('Truck_model')->getTruckById($_POST['id_truck']));
     }
 }

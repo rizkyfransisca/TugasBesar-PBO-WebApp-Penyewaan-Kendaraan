@@ -1,0 +1,82 @@
+.sub-title-wrapper {
+    font-weight: 500;
+    color: #023178;
+    position: relative;
+}
+
+.sub-title-wrapper::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #023178;
+    width: 80px;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+.sub-title{
+    position: relative;
+}
+
+.sub-title::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #cfcfcf;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.dataTables_length, .dataTables_filter{
+    margin-bottom: 30px !important;
+}
+
+th {
+    font-weight: 500;
+}
+
+table span {
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+}
+
+td span:nth-child(1){
+    color: #023178;
+}
+td span:nth-child(2){
+    color: #E80000;
+    margin-left: 5px;
+}
+
+.dataTables_paginate.paging_simple_numbers, .dataTables_info{
+    margin-top: 30px !important;
+}
+
+.page-item.active .page-link {
+    background-color: #023178 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.page-link{
+    color: #023178 !important;
+}
+
+.stat-return, .stat-on-rent {
+    display:inline-block; 
+    color:#fff; 
+    border-radius:10px;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.stat-return{
+    background-color: #00DE4C; 
+}
+
+.stat-on-rent {
+    background-color: #F9C200; 
+}

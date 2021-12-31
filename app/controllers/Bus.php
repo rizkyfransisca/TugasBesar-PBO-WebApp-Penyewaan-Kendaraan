@@ -4,26 +4,48 @@ require_once '../app/domain/Bus.php';
 
 use app\domain\Bus\Bus as BusClass;
 
+use app\domain\Kendaraan\Kendaraan as KendaraanClass;
+
 class Bus extends Controller{
+    private KendaraanClass $kendaraan;
     public function index(){
         $data['bus'] = $this->model('Bus_model')->getAllBus();
-        echo json_encode($data);
+        $this->view('bus/index', $data);
     }
 
     public function tambah(){
         $data = $_POST;
-        $bus = new BusClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["kapasitas_penumpang"], $data["tipe_ac"],$data["air_bag"], $data["kapasitas_bagasi"], $data["ada_toilet"], $data["ada_wifi"]);
+        $data["harga_sewa"] = str_replace(".","",$data["harga_sewa"]);
+        $data["harga_sewa"] = str_replace("Rp","",$data["harga_sewa"]);
+        $this->kendaraan = new BusClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["kapasitas_penumpang"], $data["tipe_ac"],$data["air_bag"], $data["kapasitas_bagasi"], $data["ada_toilet"], $data["ada_wifi"]);
 
-        $this->model('Bus_model')->tambahDataBus($bus);
+        $this->model('Bus_model')->tambahDataBus($this->kendaraan );
 
         // INGAT KASI HEADER UNTUK REDIRECT -> AGAR TIDAK KELUAR WARNING
-        echo "Berhasil Menambahkan Data";
+        header('Location: ' . BASEURL . '/bus');
+        exit;
     }
 
     public function hapus($id_bus) {
         $this->model("Bus_model")->hapusDataBus($id_bus);
         
         // INGAT KASI HEADER UNTUK REDIRECT -> AGAR TIDAK KELUAR WARNING
-        echo "Berhasil Menghapus Data";
+        header('Location: ' . BASEURL . '/bus');
+        exit;
+    }
+
+    public function ubah(){
+        $data = $_POST;
+        // untuk unformat rupiah
+        $data["harga_sewa"] = str_replace(".","",$data["harga_sewa"]);
+        $data["harga_sewa"] = str_replace("Rp","",$data["harga_sewa"]);
+        $this->kendaraan  = new BusClass($data["merk"], $data["warna"], $data["harga_sewa"], $data["tahun"], $data["transmisi"], $data["total_unit"], $data["kapasitas_penumpang"], $data["tipe_ac"],$data["air_bag"], $data["kapasitas_bagasi"], $data["ada_toilet"], $data["ada_wifi"]);
+        $this->model('Bus_model')->ubahDataBus($this->kendaraan , $_POST["id_bus"]);
+        header('Location: ' . BASEURL . '/bus');
+        exit;
+    }
+
+    public function getBusById(){
+        echo json_encode($this->model('Bus_model')->getBusById($_POST['id_bus']));
     }
 }

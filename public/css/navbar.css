@@ -1,0 +1,75 @@
+.navbar {
+    background-color: #fff !important;
+    height: 100vh;
+    width: 280px;
+    position: fixed;
+    z-index: 2;
+    padding: 1rem 0 0 2rem;
+}
+
+.navbar::after {
+    content: "";
+    position: absolute;
+    height: 400px;
+    border: 1px solid #CFCFCF;
+    right: 0;
+    top: 0;
+    height: 100vh;
+}
+
+.navbar-brand i {
+    font-size: 52px;
+}
+
+.navbar-brand {
+    color: #023178 !important;
+}
+
+.navbar-brand h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-brand p {
+    font-size: 12px;
+    margin: 0 0 5px 0;
+}
+
+.navbar-nav i {
+    font-size: 28px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item span {
+    margin: 0 0 0 15px;
+    display: inline-block;
+}
+
+.navbar img{
+    width: 45px !important;
+    height: 45px !important;
+}
+
+.navbar .title, .navbar .desc {
+    margin: 0 0 0 7px;
+}
+
+.navbar .desc p {
+    font-weight: 600;
+}
+
+.navbar .desc span {
+    font-size: 12px;
+}
+
+.navbar-actived{
+    background-color: #F1F1F1;
+    min-width: 200px;
+    border-radius: 5px; 
+    color: #023178 !important;
+}
+
