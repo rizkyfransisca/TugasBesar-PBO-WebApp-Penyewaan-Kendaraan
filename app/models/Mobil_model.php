@@ -79,4 +79,24 @@ class Mobil_model {
 
         $this->db->execute();
     }
+
+    public function sewaMobil($id_mobil, $data){
+        $query = "UPDATE mobil SET total_unit = :total_unit - 1 WHERE id_mobil = :id_mobil";
+
+        $this->db->query($query);
+        $this->db->bind('id_mobil', $id_mobil);
+        $this->db->bind('total_unit', $data->getTotalUnit());
+
+        $this->db->execute();
+    }
+
+    public function hapusKembalikanMobil($id_mobil, $total_unit){
+        $query = "UPDATE mobil SET total_unit = :total_unit + 1 WHERE id_mobil = :id_mobil";
+
+        $this->db->query($query);
+        $this->db->bind('id_mobil', $id_mobil);
+        $this->db->bind('total_unit', $total_unit);
+
+        $this->db->execute();
+    }
 }

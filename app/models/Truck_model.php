@@ -73,4 +73,24 @@ class Truck_model{
 
         $this->db->execute();
     }
+
+    public function sewaTruck($id_truck, $data){
+        $query = "UPDATE truck SET total_unit = :total_unit - 1 WHERE id_truck = :id_truck";
+
+        $this->db->query($query);
+        $this->db->bind('id_truck', $id_truck);
+        $this->db->bind('total_unit', $data->getTotalUnit());
+
+        $this->db->execute();
+    }
+
+    public function hapusKembalikanTruck($id_truck, $total_unit){
+        $query = "UPDATE truck SET total_unit = :total_unit + 1 WHERE id_truck = :id_truck";
+
+        $this->db->query($query);
+        $this->db->bind('id_truck', $id_truck);
+        $this->db->bind('total_unit', $total_unit);
+
+        $this->db->execute();
+    }
 }

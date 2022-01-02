@@ -52,7 +52,7 @@
                     <i class="ri-home-6-line"></i>
                     <span>Admin Page</span>
                 </a>
-                <a class="nav-item nav-link mb-2" href="../customer/index.php">
+                <a class="nav-item nav-link mb-2" href="<?= BASEURL ?>/penyewa">
                     <i class="ri-contacts-book-2-line"></i>
                     <span>Customers</span>
                 </a>

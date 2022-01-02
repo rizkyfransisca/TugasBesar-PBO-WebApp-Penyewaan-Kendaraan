@@ -22,7 +22,7 @@ class Motor_model{
     }
 
     public function tambahDataMotor($data){
-        $query = "INSERT INTO motor VALUES('', :merk, :warna, :harga_sewa, :tahun, :transmisi, :total_unit, :isInjeksi, :idlingStopSystem, '')";
+        $query = "INSERT INTO motor VALUES('', :merk, :warna, :harga_sewa, :tahun, :transmisi, :total_unit, :isInjeksi, :idlingStopSystem, 'motor')";
 
         $this->db->query($query);
 
@@ -68,6 +68,26 @@ class Motor_model{
 
         $this->db->query($query);
         $this->db->bind('id_motor', $id_motor);
+
+        $this->db->execute();
+    }
+
+    public function sewaMotor($id_motor, $data){
+        $query = "UPDATE motor SET total_unit = :total_unit - 1 WHERE id_motor = :id_motor";
+
+        $this->db->query($query);
+        $this->db->bind('id_motor', $id_motor);
+        $this->db->bind('total_unit', $data->getTotalUnit());
+
+        $this->db->execute();
+    }
+
+    public function hapusKembalikanMotor($id_motor, $total_unit){
+        $query = "UPDATE motor SET total_unit = :total_unit + 1 WHERE id_motor = :id_motor";
+
+        $this->db->query($query);
+        $this->db->bind('id_motor', $id_motor);
+        $this->db->bind('total_unit', $total_unit);
 
         $this->db->execute();
     }

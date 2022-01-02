@@ -78,4 +78,24 @@ class Bus_model{
 
         $this->db->execute();
     }
+
+    public function sewaBus($id_bus, $data){
+        $query = "UPDATE bus SET total_unit = :total_unit - 1 WHERE id_bus = :id_bus";
+
+        $this->db->query($query);
+        $this->db->bind('id_bus', $id_bus);
+        $this->db->bind('total_unit', $data->getTotalUnit());
+
+        $this->db->execute();
+    }
+
+    public function hapusKembalikanBus($id_bus, $total_unit){
+        $query = "UPDATE bus SET total_unit = :total_unit + 1 WHERE id_bus = :id_bus";
+
+        $this->db->query($query);
+        $this->db->bind('id_bus', $id_bus);
+        $this->db->bind('total_unit', $total_unit);
+
+        $this->db->execute();
+    }
 }
