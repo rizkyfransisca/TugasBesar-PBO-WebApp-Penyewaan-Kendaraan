@@ -14,6 +14,7 @@ class Motor_model{
         return $this->db->resultSet();
     }
 
+
     public function getMotorById($id_motor)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_motor=:id_motor'); // =: id_motor -> untuk menyimpan data yang akan kita binding => untuk menghindari sql injection
@@ -90,5 +91,12 @@ class Motor_model{
         $this->db->bind('total_unit', $total_unit);
 
         $this->db->execute();
+    }
+
+    public function totalUnitMotor(){
+        $query = "SELECT SUM(total_unit) as total_unit_motor FROM $this->table";
+
+        $this->db->query($query);
+        return $this->db->single();
     }
 }

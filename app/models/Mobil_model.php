@@ -14,6 +14,7 @@ class Mobil_model {
         return $this->db->resultSet();
     }
 
+
     public function getMobilById($id_mobil)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_mobil=:id_mobil'); // =: id_mobil -> untuk menyimpan data yang akan kita binding => untuk menghindari sql injection
@@ -98,5 +99,12 @@ class Mobil_model {
         $this->db->bind('total_unit', $total_unit);
 
         $this->db->execute();
+    }
+
+    public function totalUnitMobil(){
+        $query = "SELECT SUM(total_unit) as total_unit_mobil FROM $this->table";
+
+        $this->db->query($query);
+        return $this->db->single();
     }
 }

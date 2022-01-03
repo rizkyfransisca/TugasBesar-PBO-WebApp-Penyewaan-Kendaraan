@@ -50,7 +50,7 @@
                 </div>
             </a>
             <div class="navbar-nav d-flex flex-column mt-5 flex-grow-1">
-                <a class="nav-item nav-link mb-2" href="#">
+                <a class="nav-item nav-link mb-2" href="<?= BASEURL ?>/admin">
                     <i class="ri-home-6-line"></i>
                     <span>Admin Page</span>
                 </a>
@@ -142,7 +142,7 @@
                                 <td><?= $merged["nama"] ?></td>
                                 <td><?= $merged["kendaraan_disewa"] ?></td>
                                 <td><?= $merged["lama_sewa"] ?> days</td>
-                                <td>Rp <?= $merged["total_biaya"] ?></td>
+                                <td>Rp <?= number_format($merged["total_biaya"],0,',','.'); ?></td>
                                 <td><p class="stat-on-rent">On rent</p></td>
                                 <td><button type="button" class="btn btn-primary inverted tampilDetailsPenyewa" data-bs-toggle="modal" data-bs-target="#modal-details" data-id_penyewa="<?= $merged["id_penyewa"] ?>" data-jenis_kendaraan="<?= $merged["jenis_kendaraan"] ?>">More</button></td>
                                 <td>

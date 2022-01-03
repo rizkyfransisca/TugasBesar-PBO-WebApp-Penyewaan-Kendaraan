@@ -44,7 +44,7 @@
                 </div>
             </a>
             <div class="navbar-nav d-flex flex-column mt-5 flex-grow-1">
-                <a class="nav-item nav-link mb-2" href="#">
+                <a class="nav-item nav-link mb-2" href="<?= BASEURL ?>/admin">
                     <i class="ri-home-6-line"></i>
                     <span>Admin Page</span>
                 </a>

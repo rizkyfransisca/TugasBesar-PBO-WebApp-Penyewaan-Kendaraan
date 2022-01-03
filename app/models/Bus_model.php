@@ -13,6 +13,7 @@ class Bus_model{
         $this->db->query("SELECT * FROM $this->table");
         return $this->db->resultSet();
     }
+
     public function getBusById($id_bus)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_bus=:id_bus'); // =: id_bus -> untuk menyimpan data yang akan kita binding => untuk menghindari sql injection
@@ -97,5 +98,12 @@ class Bus_model{
         $this->db->bind('total_unit', $total_unit);
 
         $this->db->execute();
+    }
+
+    public function totalUnitBus(){
+        $query = "SELECT SUM(total_unit) as total_unit_bus FROM $this->table";
+
+        $this->db->query($query);
+        return $this->db->single();
     }
 }

@@ -1,0 +1,72 @@
+.section-title{
+    position: relative;
+    color: #023178;
+    font-weight: 500;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #023178;
+    width: 40px;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+.profile-field {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    max-width: 650px;
+    padding: 2rem;
+}
+
+.update-profile span {
+    font-size: 14px;
+}
+
+.update-profile .btn {
+    width: 110px !important;
+    height: 36px !important;
+    border-radius: 5px !important;
+}
+
+.update-profile i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.admin-info h1 {
+    font-weight: bold;
+}
+
+.admin-info p {
+    font-size: 14px;
+    color: #828282;
+}
+
+.content {
+    margin-top: 4.5rem !important;
+}
+
+.summary-field h1 {
+    font-weight: bold;
+    color: #353535;
+    font-size: 20px;
+}
+
+.summary-field .box {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.summary-field i {
+    font-size: 26px;
+    color: #023178;
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 1px solid #828282;
+}

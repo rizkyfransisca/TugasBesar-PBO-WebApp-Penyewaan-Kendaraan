@@ -93,4 +93,11 @@ class Truck_model{
 
         $this->db->execute();
     }
+
+    public function totalUnitTruck(){
+        $query = "SELECT SUM(total_unit) as total_unit_truck FROM $this->table";
+
+        $this->db->query($query);
+        return $this->db->single();
+    }
 }
