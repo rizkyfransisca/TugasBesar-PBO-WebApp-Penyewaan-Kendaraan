@@ -1,0 +1,37 @@
+body{
+    width: 100%; 
+    height:100vh; 
+    background-color: #F9F9F9
+}
+
+.container {
+    max-width: 375px !important;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 3rem;
+    background-color: #fff;
+}
+
+.icon-logo i {
+    font-size: 64px;
+    color: #023178;
+}
+
+.heading h1 {
+    font-weight: 600;
+    font-size: 24px;
+    color: #023178;
+    text-align: center;
+}
+
+.heading p {
+    color: #6C757D;
+    text-align: center;
+}
+
+.credentials button{
+    width: 100% !important;
+    border-radius: 5px !important;
+    font-weight: 500;
+}
+

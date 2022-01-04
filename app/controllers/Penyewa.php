@@ -19,19 +19,25 @@ use app\domain\Kendaraan\Kendaraan;
 class Penyewa extends Controller{
     private Kendaraan $kendaraan;
     public function index(){
-        $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
-        $data['motor'] = $this->model('Motor_model')->getAllMotor();
-        $data['truck'] = $this->model('Truck_model')->getAllTruck();
-        $data['bus'] = $this->model('Bus_model')->getAllBus();
+        if(isset($_SESSION["isLogin"])){
+            $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
+            $data['motor'] = $this->model('Motor_model')->getAllMotor();
+            $data['truck'] = $this->model('Truck_model')->getAllTruck();
+            $data['bus'] = $this->model('Bus_model')->getAllBus();
 
-        $data['penyewa_mobil'] = $this->model('Penyewa_model')->getAllPenyewaMobil();
-        $data['penyewa_motor'] = $this->model('Penyewa_model')->getAllPenyewaMotor();
-        $data['penyewa_bus'] = $this->model('Penyewa_model')->getAllPenyewaBus();
-        $data['penyewa_truck'] = $this->model('Penyewa_model')->getAllPenyewaTruck();
+            $data['penyewa_mobil'] = $this->model('Penyewa_model')->getAllPenyewaMobil();
+            $data['penyewa_motor'] = $this->model('Penyewa_model')->getAllPenyewaMotor();
+            $data['penyewa_bus'] = $this->model('Penyewa_model')->getAllPenyewaBus();
+            $data['penyewa_truck'] = $this->model('Penyewa_model')->getAllPenyewaTruck();
 
-        $data["merged"] = array_merge($data["penyewa_mobil"], $data["penyewa_motor"], $data["penyewa_truck"], $data["penyewa_bus"]);
-        sort($data["merged"]);
-        $this->view('penyewa/index',$data);
+            $data["merged"] = array_merge($data["penyewa_mobil"], $data["penyewa_motor"], $data["penyewa_truck"], $data["penyewa_bus"]);
+            sort($data["merged"]);
+            $this->view('penyewa/index',$data);
+        }else{
+            Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
     }
 
     public function tambah(){

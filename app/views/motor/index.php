@@ -68,7 +68,7 @@
                     <i class="ri-truck-line"></i>
                     <span>Truck</span>
                 </a>
-                <a class="nav-item nav-link mb-2" href="#">
+                <a class="nav-item nav-link mb-2" href="<?= BASEURL ?>/admin/logout">
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>

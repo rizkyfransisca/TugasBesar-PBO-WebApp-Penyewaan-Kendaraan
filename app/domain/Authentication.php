@@ -1,5 +1,5 @@
 <?php namespace app\domain\Authentication;
 
 interface Authentication{
-    public function login($username, $password);
+    public static function login($username, $password);
 }

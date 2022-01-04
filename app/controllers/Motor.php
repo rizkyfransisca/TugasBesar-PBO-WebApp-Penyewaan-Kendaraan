@@ -9,8 +9,15 @@ use app\domain\Kendaraan\Kendaraan as KendaraanClass;
 class Motor extends Controller{
     private KendaraanClass $kendaraan;
     public function index(){
-        $data['motor'] = $this->model('Motor_model')->getAllMotor();
-        $this->view('motor/index', $data);
+        if(isset($_SESSION["isLogin"])){
+            $data['motor'] = $this->model('Motor_model')->getAllMotor();
+            $this->view('motor/index', $data);
+        }else{
+            Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+
     }
 
     public function tambah(){

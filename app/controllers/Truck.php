@@ -9,8 +9,14 @@ use app\domain\Kendaraan\Kendaraan as KendaraanClass;
 class Truck extends Controller{
     private KendaraanClass $kendaraan;
     public function index(){
-        $data['truck'] = $this->model('Truck_model')->getAllTruck();
-        $this->view('truck/index', $data);
+        if(isset($_SESSION["isLogin"])){
+            $data['truck'] = $this->model('Truck_model')->getAllTruck();
+            $this->view('truck/index', $data);
+        }else{
+            Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
     }
 
     public function tambah(){

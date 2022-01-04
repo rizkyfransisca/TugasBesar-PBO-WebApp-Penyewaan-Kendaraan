@@ -9,9 +9,15 @@ use app\domain\Kendaraan\Kendaraan as KendaraanClass;
 class Mobil extends Controller{
     private KendaraanClass $kendaraan;
     public function index(){
-        $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
-        // echo json_encode($data)
-        $this->view('mobil/index', $data);
+        if(isset($_SESSION["isLogin"])){
+            $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
+            // echo json_encode($data)
+            $this->view('mobil/index', $data);
+        }else{
+            Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
     }
 
     public function tambah(){

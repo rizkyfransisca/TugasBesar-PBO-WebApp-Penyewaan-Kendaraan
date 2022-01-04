@@ -2,7 +2,7 @@
 
 class App {
     // default controller, method, params -> default url
-    protected $controller = 'Home';
+    protected $controller = 'Admin';
     protected $method = 'index';
     protected $params = [];
 
