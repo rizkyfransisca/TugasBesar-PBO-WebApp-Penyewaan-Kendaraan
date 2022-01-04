@@ -49,7 +49,8 @@ class Admin extends Controller{
     public function login(){
         $username = $_POST["username"];
         $password = $_POST["password"];
-        AdminClass::login($username, $password);
+        $admin = new AdminClass(1, "Rafly Cincah Pedas", USERNAME_ADMIN, PASSWORD_ADMIN);
+        $admin->login($username, $password);
     }
 
     public function logout(){
@@ -57,5 +58,6 @@ class Admin extends Controller{
         unset($_SESSION["isLogin"]);
         Flasher::setFlashLogin('success','Logout berhasil!');
         header('Location: ' . BASEURL . '/login');
+        // session_destroy();
     }
 }

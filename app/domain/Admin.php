@@ -8,12 +8,20 @@ use Flasher;
 class Admin implements Authentication{
     private $nama;
     private $id;
-    private static $username = "admin";
-    private static $password = "admin";
+    private $username;
+    private $password;
 
-    public static function login($username, $password)
+    public function __construct($nama, $id, $username, $password)
     {
-        if($username == self::$username && $password == self::$password){
+        $this->nama = $nama;
+        $this->id = $id;
+        $this->username = $username;
+        $this->password = $password;
+    }
+
+    public function login($username, $password)
+    {
+        if($username == $this->getUsername() && $password == $this->getPassword()){
             session_start();
             $_SESSION["isLogin"] = true;
             header('Location: ' . BASEURL . '/admin');
@@ -23,5 +31,45 @@ class Admin implements Authentication{
             header('Location: ' . BASEURL . '/login');
             exit;
         }
+    }
+
+    public function getNama()
+    {
+        return $this->nama;
+    }
+
+    public function setNama($nama)
+    {
+        $this->nama = $nama;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 }
