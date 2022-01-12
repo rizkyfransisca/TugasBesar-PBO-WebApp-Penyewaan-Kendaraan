@@ -52,7 +52,9 @@ $(document).ready(function() {
                 $('#detail_no_telepon').html(data.no_telepon)
                 $('#detail_no_ktp').html(data.no_ktp)
                 $('#detail_kendaraan_disewa').html(data.kendaraan_disewa)
-                $('#detail_lama_sewa').html(data.lama_sewa)
+                $('#detail_lama_sewa').html(data.lama_sewa) 
+                $('#detail-start-date').html(data["start-date"].split("-").reverse().join("-"))
+                $('#detail-end-date').html(data["end-date"].split("-").reverse().join("-"))
                 $('#detail_total_biaya').html(parseInt(data.total_biaya).toLocaleString())
             }
         })

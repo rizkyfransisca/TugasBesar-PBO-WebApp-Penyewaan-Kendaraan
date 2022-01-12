@@ -271,6 +271,8 @@
                         <li><b>ID Card</b>: <span id="detail_no_ktp"></span></li>
                         <li><b>Vehicle Rented</b>: <span id="detail_kendaraan_disewa"></span></li>
                         <li><b>Duration</b>: <span id="detail_lama_sewa"></span> days</li>
+                        <li><b>Start Date</b>: <span id="detail-start-date"></span></li>
+                        <li><b>End Date</b>: <span id="detail-end-date"></span></li>
                         <li><b>Total Cost</b>: Rp <span id="detail_total_biaya"></span></li>
                         <li><b>Status</b>: Returned</li>
                     </ul>
