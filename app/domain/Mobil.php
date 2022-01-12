@@ -81,4 +81,8 @@ class Mobil extends Kendaraan{
     {
         $this->kapasitasBagasi = $kapasitasBagasi;
     }
+
+    public function info(){
+        
+    }
 }

@@ -90,4 +90,8 @@ class Penyewa{
     {
         $this->noKTP = $noKTP;
     }
+
+    public function info(){
+        
+    }
 }

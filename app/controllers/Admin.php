@@ -49,7 +49,7 @@ class Admin extends Controller{
     public function login(){
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $admin = new AdminClass(1, "Rafly Cincah Pedas", USERNAME_ADMIN, PASSWORD_ADMIN);
+        $admin = new AdminClass(NAMA_ADMIN, ID_ADMIN, USERNAME_ADMIN, PASSWORD_ADMIN);
         $admin->login($username, $password);
     }
 

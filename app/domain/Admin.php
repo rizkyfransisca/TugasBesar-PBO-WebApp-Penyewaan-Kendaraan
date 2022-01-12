@@ -23,7 +23,7 @@ class Admin implements Authentication{
     {
         if($username == $this->getUsername() && $password == $this->getPassword()){
             session_start();
-            $_SESSION["isLogin"] = true;
+            $_SESSION["isLogin"] = ['nama' => $this->nama, 'id' => $this->id];
             header('Location: ' . BASEURL . '/admin');
             exit;
         }else{
@@ -71,5 +71,9 @@ class Admin implements Authentication{
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    public function info(){
+        
     }
 }

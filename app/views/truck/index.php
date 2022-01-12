@@ -81,7 +81,7 @@
                 <img src="img/avatar.png" alt="admin-img">
                 <div class="desc">
                     <span class="text-black-50 h6">Admin</span>
-                    <p>Rafly Cincah R.</p>
+                    <p><?= $_SESSION["isLogin"]["nama"] ?>.</p>
                 </div>
             </div>
             </a>

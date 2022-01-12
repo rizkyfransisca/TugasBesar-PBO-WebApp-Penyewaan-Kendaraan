@@ -23,7 +23,7 @@ class Motor_model{
     }
 
     public function tambahDataMotor($data){
-        $query = "INSERT INTO motor VALUES('', :merk, :warna, :harga_sewa, :tahun, :transmisi, :total_unit, :isInjeksi, :idlingStopSystem, 'motor')";
+        $query = "INSERT INTO motor VALUES('', :merk, :warna, :harga_sewa, :tahun, :transmisi, :total_unit, :isInjeksi, :idlingStopSystem)";
 
         $this->db->query($query);
 

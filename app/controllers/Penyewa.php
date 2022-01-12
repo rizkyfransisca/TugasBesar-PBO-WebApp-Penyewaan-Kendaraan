@@ -31,7 +31,8 @@ class Penyewa extends Controller{
             $data['penyewa_truck'] = $this->model('Penyewa_model')->getAllPenyewaTruck();
 
             $data["merged"] = array_merge($data["penyewa_mobil"], $data["penyewa_motor"], $data["penyewa_truck"], $data["penyewa_bus"]);
-            sort($data["merged"]);
+            $kendaraan_disewa = array_column($data["merged"],"kendaraan_disewa");
+            array_multisort($kendaraan_disewa,SORT_ASC,$data["merged"]);
             $this->view('penyewa/index',$data);
         }else{
             Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');
@@ -47,7 +48,7 @@ class Penyewa extends Controller{
             $mobil = $this->model('Mobil_model')->getMobilById($arr_exploded[0]);
             $this->kendaraan = new MobilClass($mobil["merk"], $mobil["warna"], $mobil["harga_sewa"], $mobil["tahun"], $mobil["transmisi"], $mobil["total_unit"], $mobil["kapasitas_penumpang"], $mobil["tipe_ac"], $mobil["isSunRoof"],$mobil["air_bag"], $mobil["cruise_control"], $mobil["kapasitas_bagasi"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Mobil_model')->sewaMobil($arr_exploded[0], $this->kendaraan);
 
@@ -57,7 +58,7 @@ class Penyewa extends Controller{
             $motor = $this->model('Motor_model')->getMotorById($arr_exploded[0]);
             $this->kendaraan = new MotorClass($motor["merk"], $motor["warna"], $motor["harga_sewa"], $motor["tahun"], $motor["transmisi"], $motor["total_unit"], $motor["isInjeksi"], $motor["idlingStopSystem"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Motor_model')->sewaMotor($arr_exploded[0], $this->kendaraan);
 
@@ -67,7 +68,7 @@ class Penyewa extends Controller{
             $truck = $this->model('Truck_model')->getTruckById($arr_exploded[0]);
             $this->kendaraan = new TruckClass($truck["merk"], $truck["warna"], $truck["harga_sewa"], $truck["tahun"], $truck["transmisi"], $truck["total_unit"], $truck["volume_muatan"], $truck["beban_maksimal"], $truck["jenis_truck"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Truck_model')->sewaTruck($arr_exploded[0], $this->kendaraan);
 
@@ -77,7 +78,7 @@ class Penyewa extends Controller{
             $bus = $this->model('Bus_model')->getBusById($arr_exploded[0]);
             $this->kendaraan = new BusClass($bus["merk"], $bus["warna"], $bus["harga_sewa"], $bus["tahun"], $bus["transmisi"], $bus["total_unit"], $bus["kapasitas_penumpang"], $bus["tipe_ac"],$bus["air_bag"], $bus["kapasitas_bagasi"], $bus["ada_toilet"], $bus["ada_wifi"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Bus_model')->sewaBus($arr_exploded[0], $this->kendaraan);
 
@@ -95,7 +96,7 @@ class Penyewa extends Controller{
             $mobil = $this->model('Mobil_model')->getMobilById($arr_exploded[0]);
             $this->kendaraan = new MobilClass($mobil["merk"], $mobil["warna"], $mobil["harga_sewa"], $mobil["tahun"], $mobil["transmisi"], $mobil["total_unit"], $mobil["kapasitas_penumpang"], $mobil["tipe_ac"], $mobil["isSunRoof"],$mobil["air_bag"], $mobil["cruise_control"], $mobil["kapasitas_bagasi"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Mobil_model')->sewaMobil($arr_exploded[0], $this->kendaraan);
 
@@ -121,7 +122,7 @@ class Penyewa extends Controller{
             $motor = $this->model('Motor_model')->getMotorById($arr_exploded[0]);
             $this->kendaraan = new MotorClass($motor["merk"], $motor["warna"], $motor["harga_sewa"], $motor["tahun"], $motor["transmisi"], $motor["total_unit"], $motor["isInjeksi"], $motor["idlingStopSystem"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Motor_model')->sewaMotor($arr_exploded[0], $this->kendaraan);
 
@@ -147,7 +148,7 @@ class Penyewa extends Controller{
             $truck = $this->model('Truck_model')->getTruckById($arr_exploded[0]);
             $this->kendaraan = new TruckClass($truck["merk"], $truck["warna"], $truck["harga_sewa"], $truck["tahun"], $truck["transmisi"], $truck["total_unit"], $truck["volume_muatan"], $truck["beban_maksimal"], $truck["jenis_truck"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Truck_model')->sewaTruck($arr_exploded[0], $this->kendaraan);
 
@@ -173,7 +174,7 @@ class Penyewa extends Controller{
             $bus = $this->model('Bus_model')->getBusById($arr_exploded[0]);
             $this->kendaraan = new BusClass($bus["merk"], $bus["warna"], $bus["harga_sewa"], $bus["tahun"], $bus["transmisi"], $bus["total_unit"], $bus["kapasitas_penumpang"], $bus["tipe_ac"],$bus["air_bag"], $bus["kapasitas_bagasi"], $bus["ada_toilet"], $bus["ada_wifi"]);
             $penyewa = new PenyewaClass($data["nama"], $this->kendaraan, $data["lama_sewa"], $data["total_biaya"], $data["no_telepon"], $data["alamat"], $data["no_ktp"]);
-            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1]);
+            $this->model('Penyewa_model')->tambahDataPenyewa($penyewa, $arr_exploded[0], $arr_exploded[1],$data["start-date"],$data["end-date"]);
 
             $this->model('Bus_model')->sewaBus($arr_exploded[0], $this->kendaraan);
 

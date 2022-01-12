@@ -85,4 +85,8 @@ class Kendaraan{
             return false;
         }
     }
+
+    public function info(){
+        
+    }
 }

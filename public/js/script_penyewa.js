@@ -15,6 +15,7 @@ $(document).ready(function() {
 
     $('#duration').on('input',function() {
         const duration = $('#duration').val()
+        console.log("Hello");
         if (duration == ''){
             const totalCost = parseInt(arrayHarga[$('#vehicle').prop('selectedIndex')]) * parseInt(0)
             $('#total-price').val(totalCost)
@@ -102,6 +103,8 @@ $(document).ready(function() {
                 }else if(data.jenis_kendaraan == "bus"){
                     $('#vehicle-edit').val(data.id_bus + " " + data.jenis_kendaraan)
                 }
+                $('#start-date-edit').val(data["start-date"])
+                $('#end-date-edit').val(data["end-date"])
                 $('#duration-edit').val(data.lama_sewa)
                 $('#total-price-edit').val(data.total_biaya)
                 $('#id_penyewa-edit').val(data.id_penyewa)

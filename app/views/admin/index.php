@@ -81,7 +81,7 @@
                 <img src="img/avatar.png" alt="admin-img">
                 <div class="desc">
                     <span class="text-black-50 h6">Admin</span>
-                    <p>Rafly Cincah R.</p>
+                    <p><?= $_SESSION["isLogin"]["nama"] ?>.</p>
                 </div>
             </div>
             </a>
@@ -103,9 +103,9 @@
                                 <img src="img/avatar.png" alt="">
                             </div>
                             <div class="admin-info ms-3">
-                                <h1 class="mb-2">Rafly Cincah R</h1>
+                                <h1 class="mb-2"><?= $_SESSION["isLogin"]["nama"] ?></h1>
                                 <p class="mb-2">raflyganteng</p>
-                                <p>#8275</p>
+                                <p>#<?= $_SESSION["isLogin"]["id"] ?> </p>
                             </div>
                         </div>
                     </div>

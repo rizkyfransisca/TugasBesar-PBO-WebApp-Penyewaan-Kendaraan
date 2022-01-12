@@ -83,7 +83,7 @@
                 <img src="img/avatar.png" alt="admin-img">
                 <div class="desc">
                     <span class="text-black-50 h6">Admin</span>
-                    <p>Rafly Cincah R.</p>
+                    <p><?= $_SESSION["isLogin"]["nama"] ?>.</p>
                 </div>
             </div>
             </a>
@@ -126,8 +126,9 @@
                                 <th>Name</th>
                                 <th>Rented</th>
                                 <th>Duration</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Total Cost</th>
-                                <th>Status</th>
                                 <th>Details</th>
                                 <th>Action</th>
                             </tr>
@@ -142,8 +143,9 @@
                                 <td><?= $merged["nama"] ?></td>
                                 <td><?= $merged["kendaraan_disewa"] ?></td>
                                 <td><?= $merged["lama_sewa"] ?> days</td>
+                                <td><?= date("d-m-Y", strtotime($merged["start-date"]))  ?></td>
+                                <td><?= date("d-m-Y", strtotime($merged["end-date"]))?></td>
                                 <td>Rp <?= number_format($merged["total_biaya"],0,',','.'); ?></td>
-                                <td><p class="stat-on-rent">On rent</p></td>
                                 <td><button type="button" class="btn btn-primary inverted tampilDetailsPenyewa" data-bs-toggle="modal" data-bs-target="#modal-details" data-id_penyewa="<?= $merged["id_penyewa"] ?>" data-jenis_kendaraan="<?= $merged["jenis_kendaraan"] ?>">More</button></td>
                                 <td>
                                     <span><i class="ri-edit-box-line tampilEditPenyewa" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id_penyewa="<?= $merged["id_penyewa"] ?>" data-jenis_kendaraan="<?= $merged["jenis_kendaraan"] ?>"></i></span>
@@ -227,8 +229,16 @@
                                 </select>
                             </div>
                             <div class="mb-4">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" min="1" class="form-control" id="start-date" value="<?=date("Y-m-d") ?>" name="start-date" required onchange="rubahDurasi()">
+                            </div>
+                            <div class="mb-4">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" min="1" class="form-control" id="end-date" value="<?=date("Y-m-d") ?>" name="end-date" required onchange="rubahDurasi()">
+                            </div>
+                            <div class="mb-4">
                                 <label for="duration" class="form-label">Duration (Day)</label>
-                                <input type="number" min="1" class="form-control" id="duration" name="lama_sewa" required>
+                                <input type="number" min="1" class="form-control" id="duration" name="lama_sewa" required readonly>
                             </div>
                             <div class="mb-4">
                                 <label for="total-price" class="form-label">Total Price (Rp)</label>
@@ -326,6 +336,14 @@
                                 </select>
                             </div>
                             <div class="mb-4">
+                                <label for="start-date-edit" class="form-label">Start Date</label>
+                                <input type="date" min="1" class="form-control" id="start-date-edit" name="start-date" required onchange="rubahDurasiEdit()">
+                            </div>
+                            <div class="mb-4">
+                                <label for="end-date-edit" class="form-label">End Date</label>
+                                <input type="date" min="1" class="form-control" id="end-date-edit" name="end-date" required onchange="rubahDurasiEdit()">
+                            </div>
+                            <div class="mb-4">
                                 <label for="duration-edit" class="form-label">Duration (Day)</label>
                                 <input type="number" min="1" class="form-control" id="duration-edit" name="lama_sewa" required value="7">
                             </div>
@@ -372,5 +390,73 @@
     <!-- Table Style Script -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
     <script src="<?= BASEURL ?>/js/script_penyewa.js"></script>
+    <script>
+        function secondsDiff(d1, d2) {
+            let millisecondDiff = d2 - d1;
+            let secDiff = Math.floor( ( d2 - d1) / 1000 );
+            return secDiff;
+        }
+        function minutesDiff(d1, d2) {
+            let seconds = secondsDiff(d1, d2);
+            let minutesDiff = Math.floor( seconds / 60 );
+            return minutesDiff;
+        }
+        function hoursDiff(d1, d2) {
+            let minutes = minutesDiff(d1, d2);
+            let hoursDiff = Math.floor( minutes / 60 );
+            return hoursDiff;
+        }
+        function daysDiff(d1, d2) {
+            let hours = hoursDiff(d1, d2);
+            let daysDiff = Math.floor( hours / 24 );
+            return daysDiff;
+        }
+        function rubahDurasi(){
+            let startDate = document.getElementById("start-date").value
+            let endDate = document.getElementById("end-date").value
+
+            document.getElementById("duration").value = daysDiff(new Date(startDate), new Date(endDate))
+            const listHarga = $('.listHarga')
+            let arrayHarga = []
+            arrayHarga.push(0)
+            for(var i = 0; i < listHarga.length; i++){
+                arrayHarga.push(listHarga[i].innerHTML)
+            }
+            const duration = $('#duration').val()
+            const totalCost = parseInt(arrayHarga[$('#vehicle').prop('selectedIndex')]) * parseInt(duration)
+            $('#total-price').val(totalCost)
+            console.log("Hello");
+            if (duration == ''){
+                const totalCost = parseInt(arrayHarga[$('#vehicle').prop('selectedIndex')]) * parseInt(0)
+                $('#total-price').val(totalCost)
+            }else{
+                const totalCost = parseInt(arrayHarga[$('#vehicle').prop('selectedIndex')]) * parseInt(duration)
+                $('#total-price').val(totalCost)
+            }
+        }
+
+        function rubahDurasiEdit(){
+            let startDate = document.getElementById("start-date-edit").value
+            let endDate = document.getElementById("end-date-edit").value
+
+            document.getElementById("duration-edit").value = daysDiff(new Date(startDate), new Date(endDate))
+            const listHarga = $('.listHarga')
+            let arrayHarga = []
+            arrayHarga.push(0)
+            for(var i = 0; i < listHarga.length; i++){
+                arrayHarga.push(listHarga[i].innerHTML)
+            }
+            const duration = $('#duration-edit').val()
+            const totalCost = parseInt(arrayHarga[$('#vehicle-edit').prop('selectedIndex')]) * parseInt(duration)
+            $('#total-price-edit').val(totalCost)
+            if (duration == ''){
+                const totalCost = parseInt(arrayHarga[$('#vehicle-edit').prop('selectedIndex')]) * parseInt(0)
+                $('#total-price-edit').val(totalCost)
+            }else{
+                const totalCost = parseInt(arrayHarga[$('#vehicle-edit').prop('selectedIndex')]) * parseInt(duration)
+                $('#total-price-edit').val(totalCost)
+            }
+        }
+    </script>
 </body>
 </html>

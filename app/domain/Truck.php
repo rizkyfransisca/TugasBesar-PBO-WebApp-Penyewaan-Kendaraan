@@ -33,4 +33,8 @@ class Truck extends Kendaraan {
     public function setJenisTruck($jenisTruck) {
         $this->jenisTruck = $jenisTruck;
     }
+
+    public function info(){
+        
+    }
 }

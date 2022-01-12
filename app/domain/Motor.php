@@ -29,4 +29,8 @@ class Motor extends Kendaraan {
     public function setIdlingStopSystem($idlingStopSystem){
         $this->idlingStopSystem = $idlingStopSystem;
     }
+
+    public function info(){
+        
+    }
 }

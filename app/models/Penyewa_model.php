@@ -50,9 +50,9 @@ class Penyewa_model{
         }
     }
 
-    public function tambahDataPenyewa($data, $id_kendaraan, $tipe_kendaraan){
+    public function tambahDataPenyewa($data, $id_kendaraan, $tipe_kendaraan,$startDate, $endDate){
         if($tipe_kendaraan == "mobil"){
-            $query = "INSERT INTO penyewa_mobil VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'mobil', :id_mobil)";
+            $query = "INSERT INTO penyewa_mobil VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'mobil', :id_mobil, :startDate,:endDate)";
 
             $this->db->query($query);
 
@@ -64,10 +64,12 @@ class Penyewa_model{
             $this->db->bind('alamat', $data->getAlamat());
             $this->db->bind('no_ktp', $data->getNoKTP());
             $this->db->bind('id_mobil', $id_kendaraan);
+            $this->db->bind('startDate', $startDate);
+            $this->db->bind('endDate', $endDate);
 
             $this->db->execute();
         }elseif($tipe_kendaraan == "motor"){
-            $query = "INSERT INTO penyewa_motor VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'motor', :id_motor)";
+            $query = "INSERT INTO penyewa_motor VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'motor', :id_motor,:startDate,:endDate)";
 
             $this->db->query($query);
 
@@ -79,10 +81,12 @@ class Penyewa_model{
             $this->db->bind('alamat', $data->getAlamat());
             $this->db->bind('no_ktp', $data->getNoKTP());
             $this->db->bind('id_motor', $id_kendaraan);
+            $this->db->bind('startDate', $startDate);
+            $this->db->bind('endDate', $endDate);
 
             $this->db->execute();
         }elseif($tipe_kendaraan == "truck"){
-            $query = "INSERT INTO penyewa_truck VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'truck', :id_truck)";
+            $query = "INSERT INTO penyewa_truck VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'truck', :id_truck,:startDate,:endDate)";
 
             $this->db->query($query);
 
@@ -94,10 +98,12 @@ class Penyewa_model{
             $this->db->bind('alamat', $data->getAlamat());
             $this->db->bind('no_ktp', $data->getNoKTP());
             $this->db->bind('id_truck', $id_kendaraan);
+            $this->db->bind('startDate', $startDate);
+            $this->db->bind('endDate', $endDate);
 
             $this->db->execute();
         }elseif($tipe_kendaraan == "bus"){
-            $query = "INSERT INTO penyewa_bus VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'bus', :id_bus)";
+            $query = "INSERT INTO penyewa_bus VALUES('', :nama, :kendaraan_disewa, :lama_sewa, :total_biaya, :no_telepon, :alamat, :no_ktp, 'bus', :id_bus,:startDate,:endDate)";
 
             $this->db->query($query);
 
@@ -109,6 +115,8 @@ class Penyewa_model{
             $this->db->bind('alamat', $data->getAlamat());
             $this->db->bind('no_ktp', $data->getNoKTP());
             $this->db->bind('id_bus', $id_kendaraan);
+            $this->db->bind('startDate', $startDate);
+            $this->db->bind('endDate', $endDate);
 
             $this->db->execute();
         }
