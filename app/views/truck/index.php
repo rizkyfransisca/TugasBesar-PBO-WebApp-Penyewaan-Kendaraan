@@ -72,7 +72,7 @@
                     <i class="ri-truck-line"></i>
                     <span>Truck</span>
                 </a>
-                <a class="nav-item nav-link mb-2" href="<?= BASEURL ?>/admin/logout">
+                <a class="nav-item nav-link mb-2" data-bs-toggle="modal" data-bs-target="#modal-logout" href="">
                     <i class="ri-logout-box-line"></i>
                     <span>Logout</span>
                 </a>
@@ -328,6 +328,25 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-danger btn-delete">Delete</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logout-->
+    <div class="modal fade" id="modal-logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are You Sure to Logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger btn-delete" href="<?= BASEURL ?>/admin/logout">Logout</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
