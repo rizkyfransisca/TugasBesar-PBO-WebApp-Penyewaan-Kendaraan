@@ -92,10 +92,11 @@
         <!-- Page Content -->
         <main>
             <header class="d-flex justify-content-between">
-                <h1 class="page-title">Customers</h1>
+                <h1 class="page-title align-self-center">Customers</h1>
                 <button class="btn btn-primary d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#modal-add">
                     <i class="ri-add-line"></i>
                     <span>Add Customer</span>
+                    <span>Add</span>
                 </button>
             </header>
             <div class="content">
@@ -126,9 +127,9 @@
                                 <th>Name</th>
                                 <th>Rented</th>
                                 <th>Duration</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Total Cost</th>
+                                <th class="sd-col">Start Date</th>
+                                <th class="ed-col">End Date</th>
+                                <th class="c-col">Total Cost</th>
                                 <th>Details</th>
                                 <th>Action</th>
                             </tr>
@@ -143,9 +144,9 @@
                                 <td><?= $merged["nama"] ?></td>
                                 <td><?= $merged["kendaraan_disewa"] ?></td>
                                 <td><?= $merged["lama_sewa"] ?> days</td>
-                                <td><?= date("d-m-Y", strtotime($merged["start-date"]))  ?></td>
-                                <td><?= date("d-m-Y", strtotime($merged["end-date"]))?></td>
-                                <td>Rp <?= number_format($merged["total_biaya"],0,',','.'); ?></td>
+                                <td class="sd-col"><?= date("d-m-Y", strtotime($merged["start-date"]))  ?></td>
+                                <td class="ed-col"><?= date("d-m-Y", strtotime($merged["end-date"]))?></td>
+                                <td class="c-col">Rp <?= number_format($merged["total_biaya"],0,',','.'); ?></td>
                                 <td><button type="button" class="btn btn-primary inverted tampilDetailsPenyewa" data-bs-toggle="modal" data-bs-target="#modal-details" data-id_penyewa="<?= $merged["id_penyewa"] ?>" data-jenis_kendaraan="<?= $merged["jenis_kendaraan"] ?>">More</button></td>
                                 <td>
                                     <span><i class="ri-edit-box-line tampilEditPenyewa" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id_penyewa="<?= $merged["id_penyewa"] ?>" data-jenis_kendaraan="<?= $merged["jenis_kendaraan"] ?>"></i></span>
@@ -188,7 +189,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="<?= BASEURL ?>/penyewa/tambah">
-                        <div class="row row-cols-3">
+                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                             <div class="mb-4">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="nama" required>
@@ -264,7 +265,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <ul>
+                    <!-- <ul>
                         <li><b>Name</b>: <span id="detail_nama"></span></li>
                         <li><b>Address</b>: <span id="detail_alamat"></span></li>
                         <li><b>Phone Number</b>: <span id="detail_no_telepon"></span></li>
@@ -274,7 +275,61 @@
                         <li><b>Start Date</b>: <span id="detail-start-date"></span></li>
                         <li><b>End Date</b>: <span id="detail-end-date"></span></li>
                         <li><b>Total Cost</b>: Rp <span id="detail_total_biaya"></span></li>
-                    </ul>
+                    </ul> -->
+                    <table>
+                        <colgroup>
+                            <col span="1" style="width: 30%;">
+                            <col span="1" style="width: 1%;">
+                            <col span="1" style="width: 69%;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td id="detail_nama"></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td id="detail_alamat"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td>:</td>
+                                <td id="detail_no_telepon"></td>
+                            </tr>
+                            <tr>
+                                <td>ID Card</td>
+                                <td>:</td>
+                                <td id="detail_no_ktp"></td>
+                            </tr>
+                            <tr>
+                                <td>Vehicle Rented</td>
+                                <td>:</td>
+                                <td id="detail_kendaraan_disewa"></td>
+                            </tr>
+                            <tr>
+                                <td>Duration</td>
+                                <td>:</td>
+                                <td id="detail_lama_sewa"></td>
+                            </tr>
+                            <tr>
+                                <td>Start Date</td>
+                                <td>:</td>
+                                <td id="detail-start-date"></td>
+                            </tr>
+                            <tr>
+                                <td>End Date</td>
+                                <td>:</td>
+                                <td id="detail-end-date"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Cost</td>
+                                <td>:</td>
+                                <td id="detail_total_biaya"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -296,7 +351,7 @@
                         <input type="hidden" name="id_penyewa" id="id_penyewa-edit">
                         <input type="hidden" name="jenis_kendaraan" id="jenis_kendaraan-edit">
                         <input type="hidden" name="kendaraan_lama" id="kendaraan_lama-edit">
-                        <div class="row row-cols-3">
+                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                             <div class="mb-4">
                                 <label for="name-edit" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name-edit" name="nama" required value="Api Debak R">
@@ -346,7 +401,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="duration-edit" class="form-label">Duration (Day)</label>
-                                <input type="number" min="1" class="form-control" id="duration-edit" name="lama_sewa" required value="7">
+                                <input type="number" min="1" class="form-control" id="duration-edit" name="lama_sewa" required value="7" readonly>
                             </div>
                             <div class="mb-4">
                                 <label for="total-price-edit" class="form-label">Total Price (Rp)</label>

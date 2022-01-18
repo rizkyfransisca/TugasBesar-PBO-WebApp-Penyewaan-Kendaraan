@@ -31,8 +31,8 @@ class Penyewa extends Controller{
             $data['penyewa_truck'] = $this->model('Penyewa_model')->getAllPenyewaTruck();
 
             $data["merged"] = array_merge($data["penyewa_mobil"], $data["penyewa_motor"], $data["penyewa_truck"], $data["penyewa_bus"]);
-            $kendaraan_disewa = array_column($data["merged"],"kendaraan_disewa");
-            array_multisort($kendaraan_disewa,SORT_ASC,$data["merged"]);
+            $timestamp = array_column($data["merged"],"timestamp");
+            array_multisort($timestamp,SORT_DESC,$data["merged"]);
             $this->view('penyewa/index',$data);
         }else{
             Flasher::setFlashLogin('danger','Silahkan login terlebih dahulu!');

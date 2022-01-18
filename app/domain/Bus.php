@@ -82,7 +82,4 @@ class Bus extends Kendaraan{
         $this->adaWifi = $adaWifi;
     }
 
-    public function info(){
-        
-    }
 }

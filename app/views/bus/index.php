@@ -90,10 +90,11 @@
         <!-- Page Content -->
         <main>
             <header class="d-flex justify-content-between">
-                <h1 class="page-title">Bus</h1>
+                <h1 class="page-title align-self-center">Bus</h1>
                 <button class="btn btn-primary d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#modal-add">
                     <i class="ri-add-line"></i>
                     <span>Add Bus</span>
+                    <span>Add</span>
                 </button>
             </header>
             <div class="content">
@@ -112,8 +113,8 @@
                                 <th>Brand</th>
                                 <th>Year</th>
                                 <th>Color</th>
-                                <th>Cost/Day</th>
-                                <th>Total</th>
+                                <th class="c-col">Cost/Day</th>
+                                <th class="u-col">Total</th>
                                 <th>Features</th>
                                 <th>Action</th>
                             </tr>
@@ -128,8 +129,8 @@
                                 <td><?= $bus["merk"] ?></td>
                                 <td><?= $bus["tahun"] ?></td>
                                 <td><?= $bus["warna"] ?></td>
-                                <td>Rp <?= number_format($bus["harga_sewa"],0,',','.'); ?></td>
-                                <td><?= $bus["total_unit"] ?></td>
+                                <td class="c-col">Rp <?= number_format($bus["harga_sewa"],0,',','.'); ?></td>
+                                <td class="u-col"><?= $bus["total_unit"] ?> unit</td>
                                 <td><button type="button" class="btn btn-primary inverted tampilDetailsBus" data-bs-toggle="modal" data-bs-target="#modal-details" data-id_bus="<?= $bus["id_bus"] ?>">Details</button></td>
                                 <td>
                                     <span><i class="ri-edit-box-line tampilEditBus" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id_bus="<?= $bus["id_bus"] ?>"></i></span>
@@ -159,7 +160,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="<?= BASEURL ?>/bus/tambah" method="post">
-                        <div class="row row-cols-3">
+                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                             <div class="mb-4">
                                 <label for="brand" class="form-label">Brand</label>
                                 <input type="text" class="form-control" id="brand" name="merk" required>
@@ -251,7 +252,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <ul>
+                    <!-- <ul>
                         <li><b>Brand</b>: <span id="detail_merk"></li>
                         <li><b>Color</b>: <span id="detail_warna"></li>
                         <li><b>Year</b>: <span id="detail_tahun"></li>
@@ -264,7 +265,76 @@
                         <li><b>Wifi</b>: <span id="detail_ada_wifi"></li>
                         <li><b>Toilet</b>: <span id="detail_ada_toilet"></li>
                         <li><b>Total</b>: <span id="detail_total_unit"> units</li>
-                    </ul>
+                    </ul> -->
+                    <table>
+                        <colgroup>
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 1%;">
+                            <col span="1" style="width: 59%;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>Brand</td>
+                                <td>:</td>
+                                <td id="detail_merk"></td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>:</td>
+                                <td id="detail_warna"></td>
+                            </tr>
+                            <tr>
+                                <td>Year</td>
+                                <td>:</td>
+                                <td id="detail_tahun"></td>
+                            </tr>
+                            <tr>
+                                <td>Rental Price</td>
+                                <td>:</td>
+                                <td id="detail_harga_sewa"></td>
+                            </tr>
+                            <tr>
+                                <td>Transmission</td>
+                                <td>:</td>
+                                <td id="detail_transmisi"></td>
+                            </tr>
+                            <tr>
+                                <td>Capacity</td>
+                                <td>:</td>
+                                <td id="detail_kapasitas_penumpang"></td>
+                            </tr>
+                            <tr>
+                                <td>AC Type</td>
+                                <td>:</td>
+                                <td id="detail_tipe_ac"></td>
+                            </tr>
+                            <tr>
+                                <td>Airbag Type</td>
+                                <td>:</td>
+                                <td id="detail_air_bag"></td>
+                            </tr>
+                            <tr>
+                                <td>Baggage Capacity</td>
+                                <td>:</td>
+                                <td id="detail_kapasitas_bagasi"></td>
+                            </tr>
+                            <tr>
+                                <td>Wifi</td>
+                                <td>:</td>
+                                <td id="detail_ada_wifi"></td>
+                            </tr>
+                            <tr>
+                                <td>Toilet</td>
+                                <td>:</td>
+                                <td id="detail_ada_toilet"></td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>:</td>
+                                <td id="detail_total_unit"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -284,7 +354,7 @@
                 <div class="modal-body">
                     <form method="post" action="">
                         <input type="hidden" name="id_bus" id="id_bus-edit">
-                        <div class="row row-cols-3">
+                        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                             <div class="mb-4">
                                 <label for="brand-edit" class="form-label">Brand</label>
                                 <input type="text" class="form-control" id="brand-edit" name="merk" required>

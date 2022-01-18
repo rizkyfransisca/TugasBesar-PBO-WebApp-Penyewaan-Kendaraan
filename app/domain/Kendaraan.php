@@ -78,15 +78,4 @@ class Kendaraan{
         $this->totalUnit = $totalUnit;
     }
 
-    public function isTersedia(){
-        if($this->totalUnit > 0){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function info(){
-        
-    }
 }

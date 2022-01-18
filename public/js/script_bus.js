@@ -23,7 +23,9 @@ function hanyaAngka(evt) {
 }
 
 $(document).ready(function() {
-    $('#cars').DataTable();
+    $('#cars').DataTable( {
+        "scrollX": true
+    } );
 
     var hargaSewa = document.getElementById('price');
     hargaSewa.addEventListener('keyup', function(e) {
@@ -42,16 +44,16 @@ $(document).ready(function() {
                 $('#detail_merk').html(data.merk)
                 $('#detail_warna').html(data.warna)
                 // $('#detail_harga_sewa').html(data.harga_sewa)
-                $('#detail_harga_sewa').html(parseInt(data.harga_sewa).toLocaleString())
+                $('#detail_harga_sewa').html("Rp "+parseInt(data.harga_sewa).toLocaleString())
                 $('#detail_tahun').html(data.tahun)
                 $('#detail_transmisi').html(data.transmisi)
-                $('#detail_total_unit').html(data.total_unit)
-                $('#detail_kapasitas_penumpang').html(data.kapasitas_penumpang)
+                $('#detail_total_unit').html(data.total_unit + " unit")
+                $('#detail_kapasitas_penumpang').html(data.kapasitas_penumpang + " passenger")
                 $('#detail_tipe_ac').html(data.tipe_ac)
                 $('#detail_air_bag').html(data.air_bag)
                 $('#detail_ada_wifi').html(data.ada_wifi)
                 $('#detail_ada_toilet').html(data.ada_toilet)
-                $('#detail_kapasitas_bagasi').html(data.kapasitas_bagasi)
+                $('#detail_kapasitas_bagasi').html(data.kapasitas_bagasi +" kg")
             }
         })
     })

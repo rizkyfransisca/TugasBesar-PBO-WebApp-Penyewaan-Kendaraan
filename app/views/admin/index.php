@@ -84,7 +84,6 @@
                     <p><?= $_SESSION["isLogin"]["nama"] ?>.</p>
                 </div>
             </div>
-            </a>
         </nav>
 
         <!-- Page Content -->
@@ -114,7 +113,7 @@
                     <div class="section-title">
                         <p>Summary</p>
                     </div>
-                    <div class="summary-field mt-4 row row-cols-3 gx-4 gy-4">
+                    <div class="summary-field mt-4 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-4">
                         <div class="col">
                             <div class="box p-4 d-flex">
                                 <div class="icon-circle d-flex justify-content-center align-items-center">
@@ -123,17 +122,6 @@
                                 <div class="info ms-3 align-self-center">
                                     <h1 class="mb-2"><?= $data["total_customer"] ?></h1>
                                     <p>Total Customers</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="box p-4 d-flex">
-                                <div class="icon-circle d-flex justify-content-center align-items-center">
-                                    <i class="ri-money-dollar-circle-line"></i>
-                                </div>
-                                <div class="info ms-3 align-self-center">
-                                    <h1 class="mb-2">Rp 50.000.000</h1>
-                                    <p>Total Revenue</p>
                                 </div>
                             </div>
                         </div>
@@ -217,6 +205,17 @@
     <script>
         $(document).ready(function() {
             $('#cars').DataTable();
+        } );
+    </script>
+
+    <!-- dummy js -->
+    <script>
+         $(document).ready(function() {
+            $('.nav-item').each(function(){
+                $(this).hover(function(){
+                    
+                });
+            });
         } );
     </script>
 </body>

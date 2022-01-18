@@ -94,3 +94,19 @@ body, input, button{
 }
 
 
+#modal-details table {
+	border-collapse: separate;
+	border-spacing: 0px 15px ;
+	width: 100%;
+}
+
+#modal-details table td:nth-child(3) {
+	padding-left: 10px;
+}
+
+#modal-details table td:nth-child(1) {
+	font-weight: 500;
+}
+
+
+

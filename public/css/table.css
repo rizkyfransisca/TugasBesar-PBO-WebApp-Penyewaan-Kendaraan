@@ -30,11 +30,15 @@
     margin-bottom: 30px !important;
 }
 
+.sd-col, .ed-col, .c-col, .u-col {
+    white-space: nowrap;
+}
+
 th {
     font-weight: 500;
 }
 
-table span {
+.data table span {
     font-size: 24px;
     cursor: pointer;
     position: relative;
@@ -73,10 +77,24 @@ td span:nth-child(2){
     line-height: 30px;
 }
 
+
+
 .stat-return{
     background-color: #00DE4C; 
 }
 
 .stat-on-rent {
     background-color: #F9C200; 
+}
+
+@media only screen and (max-width: 768px) {
+    .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+        float: left !important;
+         
+    }
+
+    .dataTables_filter input{
+        width: 75% !important;
+    }
+
 }

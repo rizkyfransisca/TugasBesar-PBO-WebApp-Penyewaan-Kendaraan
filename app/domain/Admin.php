@@ -73,7 +73,4 @@ class Admin implements Authentication{
         $this->password = $password;
     }
 
-    public function info(){
-        
-    }
 }

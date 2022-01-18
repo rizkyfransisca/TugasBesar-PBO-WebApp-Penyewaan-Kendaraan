@@ -23,7 +23,9 @@ function hanyaAngka(evt) {
 }
 
 $(document).ready(function() {
-    $('#cars').DataTable();
+    $('#cars').DataTable( {
+        "scrollX": true
+    } );
 
     var hargaSewa = document.getElementById('price');
     hargaSewa.addEventListener('keyup', function(e) {
@@ -42,12 +44,12 @@ $(document).ready(function() {
                 $('#detail_merk').html(data.merk)
                 $('#detail_warna').html(data.warna)
                 // $('#detail_harga_sewa').html(data.harga_sewa)
-                $('#detail_harga_sewa').html(parseInt(data.harga_sewa).toLocaleString())
+                $('#detail_harga_sewa').html("Rp " + parseInt(data.harga_sewa).toLocaleString())
                 $('#detail_tahun').html(data.tahun)
                 $('#detail_transmisi').html(data.transmisi)
-                $('#detail_total_unit').html(data.total_unit)
-                $('#detail_volume_muatan').html(data.volume_muatan)
-                $('#detail_beban_maksimal').html(data.beban_maksimal)
+                $('#detail_total_unit').html(data.total_unit + " unit")
+                $('#detail_volume_muatan').html(data.volume_muatan + ` m<sup style="font-size: 12px;">3</sup>`)
+                $('#detail_beban_maksimal').html(data.beban_maksimal + " ton")
                 $('#detail_jenis_truck').html(data.jenis_truck)
             }
         })
